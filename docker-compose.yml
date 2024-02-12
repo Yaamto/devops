@@ -1,16 +1,6 @@
 version: '3.7'
 
 services:
-  flask_app:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    networks:
-      app_network:
-        ipv4_address: 172.28.1.1
-
   mysql_service:
     build:
       context: ./mysql
@@ -26,12 +16,24 @@ services:
       app_network:
         ipv4_address: 172.28.1.2
 
+  flask_app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      mysql_service:
+        condition: service_started
+    networks:
+      app_network:
+        ipv4_address: 172.28.1.1
+
   newman_runner:
     build:
       context: ./newman
       dockerfile: Dockerfile
     depends_on:
-      - mysql_service
       - flask_app
     networks:
       - app_network
