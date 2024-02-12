@@ -1,0 +1,3 @@
+- name: Afficher la variable du fichier inventaire
+ debug: 
+  msg: "La variable à afficher est : {{ variable_a_afficher}}"
