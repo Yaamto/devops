@@ -12,6 +12,3 @@ ENV MYSQL_ROOT_PASSWORD=root_password \
 
 ##Copier les scripts d'initialisation dans le conteneur
 COPY ./scripts/ /docker-entrypoint-initdb.d/
-
-##Exposer le port MySQL
-EXPOSE 3306
