@@ -1,13 +1,16 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+
 from flask_mysqldb import MySQL
+
 # Charger les variables d'environnement à partir du fichier .env lorsque nous ne sommes pas en mode production
 if os.environ.get('ENV') != 'production':
     load_dotenv()
 
 # Créer une app Flask
 app = Flask(__name__)
+
 
 # Configuration MySQL
 app.config['MYSQL_HOST'] = '172.28.1.2'  # Le nom du service MySQL dans docker-compose
@@ -32,11 +35,13 @@ tasks = [
         'done': False
     }
 ]
+
 # Route "/" (GET) pour l'accueil
 @app.route('/', methods=['GET'])
 def home():
     # Recuperate les données de la BDD
     return jsonify({'status': "Ok", "iterator": "Super ça marche !"})
+
 
 # Route "/health" (GET) Questionner le serveur
 @app.route('/health', methods=['GET'])
@@ -60,16 +65,17 @@ def get():
     return jsonify({'status': "Ok", "iterator": rows})
 
 
+
 # Route "/add" (POST) pour ajouter
 @app.route('/add', methods=['POST'])
 def create_task():
-
     if not request.json:
         return jsonify({'error': 'JSON expected'}), 400
 
     interator = {
         'state': request.json['value'],
     }
+
     # BDD à faire pour créer
     return jsonify({'interator': interator}), 201
 
