@@ -3,9 +3,9 @@ common:
   env:
     name: dev
     network: app_network
-    password_root: passwd
-    database_name: iterator-db
+    password_root: root_password
+    database_name: my_database
   compose:
-    - newman
-    - nginx
-    - python
+    - mysql_service
+    - flask_app
+    - newman_runner
