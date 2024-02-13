@@ -1,2 +1,3 @@
 content:
+  hosts: localhost
   to_print: "Useless data"
