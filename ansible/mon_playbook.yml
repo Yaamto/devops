@@ -1,0 +1,12 @@
+- name: Building environment
+  hosts: localhost
+  pre_tasks:
+    - name: Create compose directory
+      file:
+        path: "{{common.running_path}}"
+        state: directory
+        owner: root
+        group: root
+        mode: '1777'
+  roles:
+    - mon_role

@@ -1,0 +1,4 @@
+- name: "Docker compose file for application"
+  template:
+    src: "docker-compose.yml"
+    dest: "{{common.running_path}}/docker-compose.yml"

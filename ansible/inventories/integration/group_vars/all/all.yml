@@ -1,0 +1,11 @@
+common:
+  running_path: compose
+  env:
+    name: dev
+    network: app_network
+    password_root: root_password
+    database_name: my_database
+  compose:
+    - mysql_service
+    - flask_app
+    - newman_runner
