@@ -10,8 +10,6 @@ services:
       MYSQL_DATABASE: my_database
       MYSQL_USER: db_user
       MYSQL_PASSWORD: db_password
-    ports:
-      - "3306:3306"
     networks:
       app_network:
         ipv4_address: 172.28.1.2
@@ -20,23 +18,12 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
     depends_on:
       mysql_service:
         condition: service_started
     networks:
       app_network:
         ipv4_address: 172.28.1.1
-
-  newman_runner:
-    build:
-      context: ./newman
-      dockerfile: Dockerfile
-    depends_on:
-      - flask_app
-    networks:
-      - app_network
 
 networks:
   app_network:
