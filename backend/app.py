@@ -77,7 +77,7 @@ def create_task():
     }
 
     # BDD à faire pour créer
-    return jsonify({'interator': interator}), 201
+    return jsonify({'interator': interator}), 200
 
 
 # Enfin, démarrer l'API
