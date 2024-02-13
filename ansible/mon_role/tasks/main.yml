@@ -1,3 +1,4 @@
-- name: Afficher la variable du fichier inventaire
-  debug:
-    msg: "La variable à afficher est : {{ content.to_print }}"
+- name: "Docker compose file for application"
+  template:
+    src: "docker-compose.yml"
+    dest: "{{common.running_path}}/docker-compose.yml"
